@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import SeasonDisplay from "./SeasonDisplay";
 // import "semantic-ui-css/semantic.min.css";
 
+
 //classベースのcomponent(GEO APIを呼び出している訳ではない)
 class App extends React.Component {
   //State must ne initialized when a component is created
