@@ -1,4 +1,22 @@
+import "./SeasonDisplay.css";
 import React from "react";
+
+const SeasonDisplay = (props) => {
+  // console.log(props.lat); seasonDisplayがちゃんとcurrent latが伝えられているか確認
+  const season = getSeason(props.lat, new Date().getMonth());
+  const { text, iconName } = seasonConfig[season]; //{text, iconName}
+  // const text =
+  //   season === "winter" ? "Burr, it is chilly" : "Lets hit the beach";
+  // const icon = season === "winter" ? "snowflake" : "sun";
+
+  return (
+    <div className={`season-display ${season}`}>
+      <i className={`icon-left massive ${iconName} icon`} />
+      <h1>{text}</h1>
+      <i className={`icon-right massive ${iconName} icon`} />
+    </div>
+  );
+};
 
 const seasonConfig = {
   summer: {
@@ -6,7 +24,7 @@ const seasonConfig = {
     iconName: "sun",
   },
   winter: {
-    text: "Butt it is cold",
+    text: "Burr it is cold",
     iconName: "snowflake",
   },
 };
@@ -18,23 +36,6 @@ const getSeason = (lat, month) => {
   } else {
     return lat > 0 ? "winter" : "summer";
   }
-};
-
-const SeasonDisplay = (props) => {
-  // console.log(props.lat); seasonDisplayがちゃんとcurrent latが伝えられているか確認
-  const season = getSeason(props.lat, new Date().getMonth());
-  const { text, iconName } = seasonConfig[season]; //{text, iconName}
-  // const text =
-  //   season === "winter" ? "Burr, it is chilly" : "Lets hit the beach";
-  // const icon = season === "winter" ? "snowflake" : "sun";
-
-  return (
-    <div>
-      <i className={`${iconName} icon`} />
-      <h1>{text}</h1>
-      <i className={`${iconName} icon`} />
-    </div>
-  );
 };
 
 export default SeasonDisplay;

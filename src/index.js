@@ -1,8 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import SeasonDisplay from "./SeasonDisplay";
-// import "semantic-ui-css/semantic.min.css";
+import Spinner from "./spiner";
+import "./style/App.css";
 
+// import "semantic-ui-css/semantic.min.css";
 
 //classベースのcomponent(GEO APIを呼び出している訳ではない)
 class App extends React.Component {
@@ -34,8 +36,8 @@ class App extends React.Component {
     );
   }
 
-  //React says we have to define render!
-  render() {
+  //render methodを全て含むfunctionを作る
+  renderContent() {
     //1.緯度がどちらにあるかの確認
     //2.それに伴って表示させる季節をここで書く
     if (this.state.errorMessage && !this.state.lat) {
@@ -47,10 +49,15 @@ class App extends React.Component {
       //took state from one component and pass it as a prop down to the child.
     }
 
-    return <div>Loading!</div>;
+    // return <div>Loading!</div>;
+    return <Spinner message="Please accept location request" />;
+  }
+
+  //React says we have to define render!
+  render() {
+    return <div className="border">{this.renderContent()}</div>;
   }
 }
-
 // const App = () => {
 //   window.navigator.geolocation.getCurrentPosition(
 //     (position) => console.log(position),
